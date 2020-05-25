@@ -1,0 +1,9 @@
+{# templates/lucky/number.html.twig #}
+<head>
+    <link rel="icon" href="{{ favicon }}">
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+<h1>Your lucky number is {{ number }}</h1>
