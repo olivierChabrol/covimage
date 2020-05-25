@@ -3,9 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Numéro chance{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/base.css') }}"/>
         <!-- Bootstrap components from https://www.bootstrapcdn.com/ -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        {% endblock %}
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 
@@ -48,10 +50,11 @@
     <div class="container">
         <body>
             {% block body %}{% endblock %}
+
+    </div> <!-- container -->
             {% block footer %}<footer class="footer">
-                <div class="container"><span>test footer</span></div>
+                <span>© Covidimage - 2020</span>
             </footer>{% endblock %}
             {% block javascripts %}{% endblock %}
         </body>
-    </div> <!-- container -->
 </html>
