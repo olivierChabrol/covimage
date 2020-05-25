@@ -13,11 +13,8 @@ class LuckyController extends AbstractController
     {
         $number = random_int(0, 100);
         $pathPack = new PathPackage('/assets', new EmptyVersionStrategy());
-
         return $this->render('lucky/number.html.twig', [
-            'number' => $number,
-            'favicon' => $pathPack->getUrl('favicon.ico'),
-            'style' => $pathPack->getUrl('css/app.css')
+            'number' => $number
         ]);
     }
     public function favicon() {
