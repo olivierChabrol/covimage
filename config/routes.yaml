@@ -1,8 +1,13 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+  path: /
+  controller: App\Controller\MainController::index
 
-# the "app_lucky_number" route name is not important yet
-app_lucky_number:
-    path: /lucky/number
-    controller: App\Controller\LuckyController::number
+upload:
+  path: /upload
+  controller: App\Controller\MainController::upload
+  methods: GET
+
+upload_files:
+  path: /upload
+  controller: App\Controller\MainController::files
+  methods: POST
