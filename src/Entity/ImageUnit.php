@@ -2,16 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\FichierRepository;
+use App\Repository\ImageUnitRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @ORM\Entity(repositoryClass=FichierRepository::class)
+ * @ORM\Entity(repositoryClass=ImageUnitRepository::class)
  * @Vich\Uploadable
  */
-class Fichier
+class ImageUnit
 {
     /**
      * @ORM\Id()
@@ -28,6 +28,12 @@ class Fichier
      * @var File
      */
     private $imageFile;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=ImageStack::class, inversedBy="images", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $stack;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -47,6 +53,18 @@ class Fichier
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getStack(): ?ImageStack
+    {
+        return $this->stack;
+    }
+
+    public function setStack(?ImageStack $stack): self
+    {
+        $this->stack = $stack;
+
+        return $this;
     }
 
     public function getName(): ?string

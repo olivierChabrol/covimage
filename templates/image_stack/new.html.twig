@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ImageStack{% endblock %}
+
+{% block body %}
+    <h1>Create new ImageStack</h1>
+
+    {{ include('image_stack/_form.html.twig') }}
+
+    <a href="{{ path('image_stack_index') }}">back to list</a>
+{% endblock %}
