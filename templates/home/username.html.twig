@@ -1,0 +1,21 @@
+{# templates/home/username.html.twig #}
+{% extends 'home/layout.html.twig'%}
+
+{% block header %}
+    {% if username == "inconnu" %}
+    <li class="nav-item">
+        <a class="nav-link" href="#">Se connecter</a>
+    </li>
+    {% else %}
+    <li class="nav-item">
+        <a class="nav-link" href="#">Se déconnecter</a>
+    </li>
+    {% endif %}
+{% endblock %}
+
+{% block page_contents %}Bonjour {{username}}.
+{% if username == "inconnu" %}
+    <p>Il semblerait que vous ne soyez pas connecté. Connectez-vous pour accéder à plus d'options.</p>
+{% endif %}
+
+{% endblock %}
