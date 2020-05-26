@@ -12,7 +12,6 @@ class HomeController extends AbstractController
     public function homepage()
     {
         $user = $this->getUser();
-
         if (!$user) {
             $username = "inconnu";
         } else {
