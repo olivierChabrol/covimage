@@ -26,21 +26,19 @@
                     <a class="nav-link" href="/">Accueil<span class="sr-only">(current)</span></a>
                 </li>
                 {% block header %}
-
+                
                 {% endblock %}
                 </ul>
             </div>
         </nav>
     </header>
-
-    <div class="container">
-        <body>
+    <body>
+        <div class="container">
             {% block body %}{% endblock %}
-
-    </div> <!-- container -->
-            {% block footer %}<footer class="footer">
-                <span>© Covimage - 2020</span>
-            </footer>{% endblock %}
-            {% block javascripts %}{% endblock %}
+        </div> <!-- container -->
+        {% block footer %}<footer class="footer">
+            <span>© Covimage - 2020</span>
+        </footer>{% endblock %}
+        {% block javascripts %}{% endblock %}
         </body>
 </html>

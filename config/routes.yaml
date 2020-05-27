@@ -16,6 +16,7 @@ login:
 logout:
     path: /logout
     controller: App\Controller\SecurityController::logout
+    methods: GET
 
 #signup:
 #    path: /signup
