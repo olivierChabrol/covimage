@@ -8,3 +8,6 @@ upload:
 stack:
   path: /stack
   controller: App\Controller\FormController::image_stack
+show:
+  path: /show/{id}
+  controller: App\Controller\MainController::show

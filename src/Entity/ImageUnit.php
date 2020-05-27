@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ImageUnitRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -25,13 +26,13 @@ class ImageUnit
      *
      * @Vich\UploadableField(mapping="uploaded_files", fileNameProperty="name", size="size")
      *
-     * @var File
+     * @var UploadedFile
      */
     private $imageFile;
 
     /**
      * @ORM\ManyToOne(targetEntity=ImageStack::class, inversedBy="images", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false)  
      */
     private $stack;
 
@@ -102,7 +103,6 @@ class ImageUnit
     public function setImageFile(?File $imageFile = null): void
     {
         $this->imageFile = $imageFile;
-
         if (null !== $imageFile) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
@@ -110,7 +110,7 @@ class ImageUnit
         }
     }
 
-    public function getImageFile(): ?File
+    public function getImageFile(): ?UploadedFile
     {
         return $this->imageFile;
     }

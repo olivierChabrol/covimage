@@ -2,26 +2,26 @@
 
 namespace App\Form;
 
-use App\Entity\ImageUnit;
 use App\Entity\ImageStack;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ImageStackType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date')
-            ->add('name')
-            ->add('quantity')
-            ->add('images', CollectionType::class, [
-                'entry_type' => ImageUnitType::class,
-                'allow_add' => true,
-                'allow_delete' => true,
-                'prototype' => true
+            ->add('name',TextType::class, [
+                'required'=>true,
+                'label'=>'Nom de l\'analyse'
+                ])
+            ->add('uploadedFiles',FileType::class, [
+                'label'=>'Images à analyser',
+                'required' => true,
+                'multiple' => true
             ])
         ;
     }

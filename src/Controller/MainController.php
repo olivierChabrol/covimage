@@ -2,7 +2,8 @@
 // src/Controller/MainController.php
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
+use App\Entity\ImageStack;
+use App\Form\ImageStackType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -12,14 +13,18 @@ class MainController extends AbstractController
     {
         return $this->render('home.html.twig');
     }
-    public function upload()
-    {
-        return $this->render('upload.html.twig');
-    }
-    public function files(Request $req)
-    {
-        $requestStr = var_dump($req);
-        return new Response("Uploadé");
+    public function show(int $id=0)
+    {   
+        if ($id>0) {
+            $ImageS = $this->getDoctrine()
+                ->getRepository(ImageStack::class)
+                ->find($id);
+            if (!$ImageS) {
+                return new Response("Pas trouvé !");
+            }
+            return $this->render('uploaded.html.twig', ['Images'=>$ImageS->getImages()]);
+        }
+        return new Response("ID nul");
     }
 }
 ?>

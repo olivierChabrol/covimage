@@ -10,8 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=ImageStackRepository::class)
  */
-class ImageStack
-{
+class ImageStack {   
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -39,72 +38,72 @@ class ImageStack
      */
     private $images;
 
-    public function __construct()
-    {
+    /**
+     * @var array
+     */
+    private $uploadedFiles;
+
+    public function __construct() {
         $this->images = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
+    public function getId(): ?int {
         return $this->id;
     }
 
-    public function getDate(): ?\DateTimeInterface
-    {
+    public function getDate(): ?\DateTimeInterface {
         return $this->date;
     }
 
-    public function setDate(\DateTimeInterface $date): self
-    {
+    public function setDate(\DateTimeInterface $date): self {
         $this->date = $date;
 
         return $this;
     }
 
-    public function getName(): ?string
-    {
+    public function getName(): ?string {
         return $this->name;
     }
 
-    public function setName(string $name): self
-    {
+    public function setName(string $name): self {
         $this->name = $name;
 
         return $this;
     }
 
-    public function getQuantity(): ?int
-    {
+    public function getQuantity(): ?int {
         return $this->quantity;
     }
 
-    public function setQuantity(int $quantity): self
-    {
+    public function setQuantity(int $quantity): self {
         $this->quantity = $quantity;
 
+        return $this;
+    }
+    public function getUploadedFiles() {
+        return $this->uploadedFiles;
+    }
+    public function setUploadedFiles(array $files) {
+        $this->uploadedFiles = $files;
         return $this;
     }
 
     /**
      * @return Collection|ImageUnit[]
      */
-    public function getImages(): Collection
-    {
+    public function getImages(): Collection {
         return $this->images;
     }
 
-    public function addImage(ImageUnit $image): self
-    {
+    public function addImage(ImageUnit $image): self {
         if (!$this->images->contains($image)) {
             $this->images[] = $image;
             $image->setStack($this);
         }
-
         return $this;
     }
 
-    public function removeImage(ImageUnit $image): self
-    {
+    public function removeImage(ImageUnit $image): self {
         if ($this->images->contains($image)) {
             $this->images->removeElement($image);
             // set the owning side to null (unless already changed)
