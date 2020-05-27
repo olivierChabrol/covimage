@@ -6,11 +6,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+use Psr\Log\LoggerInterface;
+
 class SecurityController extends AbstractController
 {
 
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function login(AuthenticationUtils $authenticationUtils, LoggerInterface $logger): Response
     {
+        $logger->error("[SecurityController] [login]erreur connexion produite");
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
         // }
