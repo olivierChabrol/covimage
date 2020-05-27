@@ -11,3 +11,25 @@ stack:
 show:
   path: /show/{id}
   controller: App\Controller\MainController::show
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+app_lucky_number:
+    path: /lucky/number
+    controller: App\Controller\LuckyController::number
+
+homepage:
+    path: /
+    controller: App\Controller\HomeController::homepage
+
+login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+
+logout:
+    path: /logout
+    controller: App\Controller\SecurityController::logout
+
+#signup:
+#    path: /signup
+#    controller : #todo
