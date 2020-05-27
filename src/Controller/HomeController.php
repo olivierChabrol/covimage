@@ -13,8 +13,6 @@ class HomeController extends AbstractController
 {
     public function homepage(LoggerInterface $logger)
     {
-
-        $logger->error("[HomeController] [homepage] erreur produite");
         $user = $this->getUser();
         if (!$user) {
             $username = "inconnu";
