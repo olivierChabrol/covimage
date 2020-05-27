@@ -8,3 +8,15 @@ app_lucky_number:
 homepage:
     path: /
     controller: App\Controller\HomeController::homepage
+
+login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+
+logout:
+    path: /logout
+    controller: App\Controller\SecurityController::logout
+
+#signup:
+#    path: /signup
+#    controller : #todo
