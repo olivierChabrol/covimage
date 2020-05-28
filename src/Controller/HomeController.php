@@ -17,7 +17,7 @@ class HomeController extends AbstractController
         if (!$user) {
             $username = "inconnu";
         } else {
-            $username = $user->getFirstName();
+            $username = $user->getEmail();
         }
         
         return $this->render('home/username.html.twig', [

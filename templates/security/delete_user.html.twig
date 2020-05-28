@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Supprimer un utilisateur{% endblock %}
+
+{% block body %}
+<form method="post">
+
+    <h1 class="h3 mb-3 font-weight-normal">Supprimer un utilisateur</h1>
+    <label for="inputEmail">E-mail <i class="fas fa-at"></i></label>
+    <input type="email" value="" name="email" id="inputEmail" class="form-control" required autofocus>
+
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+
+    <button class="btn btn-lg btn-danger" type="submit">
+        Supprimer
+    </button>
+</form>
+{% endblock %}

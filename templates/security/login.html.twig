@@ -7,13 +7,7 @@
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
-
-    {% if app.user %}
-        <div class="mb-3">
-            Vous êtes connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">se déconnecter</a>
-        </div>
-    {% endif %}
-
+    
     <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
     <label for="inputEmail">E-mail <i class="fas fa-at"></i></label>
     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
