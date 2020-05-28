@@ -2,7 +2,6 @@
 
 namespace App\DataFixtures;
 
-
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -19,18 +18,23 @@ class UserFixtures extends Fixture
     
     public function load(ObjectManager $manager)
     {
+        // DEFAULT USER
         $user = new User();
         $user->setEmail("olivier.chabrol@univ-amu.fr");
-        $roles[] = 'ROLE_USER';
-        $user->setRoles(array_unique($roles));
-        
+        $user->setRoles(array('ROLE_USER')); 
         $user->setPassword($this->passwordEncoder->encodePassword($user,'toto'));
 
-        // $product = new Product();
         $manager->persist($user);
-
         $manager->flush();
 
+        // ADMIN USER
+        $user = new User();
+        $user->setEmail("admin@admin.com");
+        $user->setRoles(array('ROLE_ADMIN'));
+        $user->setPassword($this->passwordEncoder->encodePassword($user,'root'));
+
+        $manager->persist($user);
+        $manager->flush();
     }
     
 }
