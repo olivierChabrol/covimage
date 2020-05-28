@@ -29,6 +29,6 @@
 
     <listeners>
         <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />
-        <listener class="\DAMA\DoctrineTestBundle\PHPUnit\PHPUnitListener" />
+        <extension class="DAMA\DoctrineTestBundle\PHPUnit\PHPUnitExtension"/>
     </listeners>
 </phpunit>
