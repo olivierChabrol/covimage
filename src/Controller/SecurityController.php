@@ -29,9 +29,23 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    public function signup()
+    public function add_user()
     {
-        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+        //throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+        
+        return $this->render('security/add_user.html.twig', [
+    
+        ]);
+    }
+
+
+    public function delete_user()
+    {
+        //throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+        
+        return $this->render('security/delete_user.html.twig', [
+    
+        ]);
     }
 
     public function logout()
