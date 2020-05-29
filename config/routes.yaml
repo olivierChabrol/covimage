@@ -35,9 +35,9 @@ logout:
     controller: App\Controller\SecurityController::logout
     methods: GET
 
-#signup:
-#    path: /signup
-#    controller : #todo
+profil:
+  path: /profil
+  controller: App\Controller\SecurityController::profil
 
 ajax_check_state:
     path: /ajax-check-state
@@ -47,10 +47,3 @@ ajax_check_state:
 delete_image_stack: 
     path: /delete-image-stack/{token}
     controller: App\Controller\MainController:deleteStack
-add_user:
-    path: /admin/add_user
-    controller: App\Controller\SecurityController::add_user
-
-delete_user:
-    path: /admin/delete_user
-    controller: App\Controller\SecurityController::delete_user
