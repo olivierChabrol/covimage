@@ -6,5 +6,11 @@ vich_uploader:
         uploaded_files:
             uri_prefix: /images/uploads
             upload_destination: '%kernel.project_dir%/public/images/uploads'
-            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            delete_on_remove: true
+            namer: 
+                service: App\Service\IncrementalFileNamer
+                options: {token: 'stack.getToken'}
+            directory_namer:
+                service: vich_uploader.namer_directory_property
+                options: { property: 'stack.toString', transliterate: true}
             inject_on_load: true

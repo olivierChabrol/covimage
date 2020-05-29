@@ -43,6 +43,16 @@ class ImageStack {
      */
     private $uploadedFiles;
 
+    /**
+     * @ORM\Column(type="string", length=15)
+     */
+    private $token;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $analysed;
+
     public function __construct() {
         $this->images = new ArrayCollection();
     }
@@ -65,7 +75,7 @@ class ImageStack {
         return $this->name;
     }
 
-    public function setName(string $name): self {
+    public function setName(?string $name): self {
         $this->name = $name;
 
         return $this;
@@ -111,6 +121,33 @@ class ImageStack {
                 $image->setStack(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+
+    public function setToken(string $token): self
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+    public function toString(): ?string {
+        return $this->name.'_'.$this->token;
+    }
+
+    public function getAnalysed(): ?bool
+    {
+        return $this->analysed;
+    }
+
+    public function setAnalysed(bool $analysed): self
+    {
+        $this->analysed = $analysed;
 
         return $this;
     }

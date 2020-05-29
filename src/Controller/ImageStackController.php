@@ -3,12 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\ImageStack;
-use App\Form\ImageStackType;
+use App\Form\ImageStack1Type;
 use App\Repository\ImageStackRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
+use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * @Route("/image/stack")
@@ -31,7 +33,7 @@ class ImageStackController extends AbstractController
     public function new(Request $request): Response
     {
         $imageStack = new ImageStack();
-        $form = $this->createForm(ImageStackType::class, $imageStack);
+        $form = $this->createForm(ImageStack1Type::class, $imageStack);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +65,7 @@ class ImageStackController extends AbstractController
      */
     public function edit(Request $request, ImageStack $imageStack): Response
     {
-        $form = $this->createForm(ImageStackType::class, $imageStack);
+        $form = $this->createForm(ImageStack1Type::class, $imageStack);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -85,6 +87,18 @@ class ImageStackController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$imageStack->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
+            if ($imageStack->getAnalysed()) {
+                $filesys = new Filesystem();
+                $dir = "images/results/".strtolower($imageStack->getName()).'-'.$imageStack->getToken();
+                foreach ($imageStack->getImages() as $unit) {
+                    try {
+                        $filesys->remove($dir."/".$unit->getName());
+                    } catch (IOExceptionInterface $exception) {
+                        echo "An error occurred while creating your directory at ".$exception->getPath();
+                    }
+                }
+                $filesys->remove($dir);
+            }
             $entityManager->remove($imageStack);
             $entityManager->flush();
         }

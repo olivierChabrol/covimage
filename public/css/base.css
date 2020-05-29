@@ -60,3 +60,39 @@ form[name=image_stack] button:hover {
     box-shadow: 2px 2px 10px gray;
     width: 100%;
 }
+
+#visualizer-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+#slider-position {
+    font-size: 3em;
+    margin-right: 128px;
+}
+#slider-wrapper {
+    transform: rotate(-90deg) translate(-256px,-4em);
+    width: 0px;
+}
+#slider {
+    width: 512px;
+}
+#images_stack {
+    height: 512px;
+    width: 512px;
+    margin-right: 128px;
+}
+.visualized-image {
+    z-index: 50;
+}
+#images_stack img {
+    position: absolute;
+    height: 512px;
+    width: 512px;
+}
+#images_stack img#loading_icon {
+    height: 128px;
+    width: 128px;
+    transform: translate(192px, 192px);
+}

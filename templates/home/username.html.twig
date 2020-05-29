@@ -9,6 +9,10 @@
     <li class="nav-item">
         <a class="nav-link" href="/signup">S'enregistrer</a>
     </li>
+    {# To be moved under the else once signing-in will be operational : #}
+    <li class="nav-item">
+        <a class="nav-link" href="/new">Analyser</a>
+    </li>
     {% else %}
     <li class="nav-item">
         <a class="nav-link" href="/logout">Se déconnecter</a>
@@ -17,8 +21,7 @@
 {% endblock %}
 
 {% block page_contents %}Bonjour {{username}}.
-{% if username == "inconnu" %}
-    <p>Il semblerait que vous ne soyez pas connecté. Connectez-vous pour accéder à plus d'options.</p>
-{% endif %}
-
+    {% if username == "inconnu" %}
+        <p>Il semblerait que vous ne soyez pas connecté. Connectez-vous pour accéder à plus d'options.</p>
+    {% endif %}
 {% endblock %}
