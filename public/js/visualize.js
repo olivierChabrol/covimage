@@ -25,9 +25,9 @@ jQuery(function($) {
     $("#check_analyser").click(function (){
         $.post("/ajax-check-state",{token: $(this).attr('token')},function (response) {
             if (response.success) {
-                $("#analyse_state").html("Analyse terminée : <a href='/visualize/"+$("#check_analyser").attr('token')+"'>résultat</a>");
+                $("#analyse_state").html("Processing finished : <a href='/visualize/"+$("#check_analyser").attr('token')+"'>Results</a>");
             } else {
-                $("#analyse_state").html("Analyse en cours...");
+                $("#analyse_state").html("Processing in progress...");
             }
         })
     });
