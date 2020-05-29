@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ImageStack{% endblock %}
+
+{% block body %}
+    <h1>ImageStack</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ image_stack.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ image_stack.date ? image_stack.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ image_stack.name }}</td>
+            </tr>
+            <tr>
+                <th>Quantity</th>
+                <td>{{ image_stack.quantity }}</td>
+            </tr>
+            <tr>
+                <th>Token</th>
+                <td>{{ image_stack.token }}</td>
+            </tr>
+            <tr>
+                <th>Analysed</th>
+                <td>{{ image_stack.analysed ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('image_stack_index') }}">back to list</a>
+
+    <a href="{{ path('image_stack_edit', {'id': image_stack.id}) }}">edit</a>
+
+    {{ include('image_stack/_delete_form.html.twig') }}
+{% endblock %}
