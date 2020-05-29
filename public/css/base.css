@@ -2,6 +2,14 @@ nav {
     margin-bottom: 1em;
 }
 
+form {
+    max-width: 50%;
+}
+
+form input {
+    margin-bottom: 1em;
+}
+
 footer {
     margin-top: 1em;
     position: absolute;

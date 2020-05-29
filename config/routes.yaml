@@ -33,7 +33,15 @@ login:
 logout:
     path: /logout
     controller: App\Controller\SecurityController::logout
+    methods: GET
 
+add_user:
+    path: /admin/add_user
+    controller: App\Controller\SecurityController::add_user
+
+delete_user:
+    path: /admin/delete_user
+    controller: App\Controller\SecurityController::delete_user
 #signup:
 #    path: /signup
 #    controller : #todo

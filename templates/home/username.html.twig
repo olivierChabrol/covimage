@@ -14,14 +14,25 @@
         <a class="nav-link" href="/new">Analyser</a>
     </li>
     {% else %}
-    <li class="nav-item">
-        <a class="nav-link" href="/logout">Se déconnecter</a>
-    </li>
+        {% if is_granted('ROLE_ADMIN') %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('add_user') }}">Ajouter un utilisateur</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('delete_user') }}">Supprimer un utilisateur</a>
+            </li>
+        {% endif %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('logout') }}">Se déconnecter</a>
+        </li>
     {% endif %}
 {% endblock %}
 
 {% block page_contents %}Bonjour {{username}}.
-    {% if username == "inconnu" %}
-        <p>Il semblerait que vous ne soyez pas connecté. Connectez-vous pour accéder à plus d'options.</p>
-    {% endif %}
+{% if username == "inconnu" %}
+    <p>Il semblerait que vous ne soyez pas connecté. Connectez-vous pour accéder à plus d'options.</p>
+{% else %}
+    <p>[...]</p>
+{% endif %}
+
 {% endblock %}

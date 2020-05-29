@@ -7,15 +7,17 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Twig\Environment;
 
+use Psr\Log\LoggerInterface;
+
 class HomeController extends AbstractController
 {
-    public function homepage()
+    public function homepage(LoggerInterface $logger)
     {
         $user = $this->getUser();
         if (!$user) {
             $username = "inconnu";
         } else {
-            $username = $user->getFirstName();
+            $username = $user->getEmail();
         }
         
         return $this->render('home/username.html.twig', [
