@@ -3,9 +3,9 @@
 
 {% block header %}
     {% if username == "inconnu" %}
-    <li class="nav-item">
-        <a class="nav-link" href="/login">Se connecter</a>
-    </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('login') }}">Se connecter</a>
+        </li>
     <li class="nav-item">
         <a class="nav-link" href="/signup">S'enregistrer</a>
     </li>
@@ -31,8 +31,6 @@
 {% block page_contents %}Bonjour {{username}}.
 {% if username == "inconnu" %}
     <p>Il semblerait que vous ne soyez pas connecté. Connectez-vous pour accéder à plus d'options.</p>
-{% else %}
-    <p>[...]</p>
 {% endif %}
 
 {% endblock %}

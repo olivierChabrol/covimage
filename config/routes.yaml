@@ -35,6 +35,7 @@ logout:
     controller: App\Controller\SecurityController::logout
     methods: GET
 
+<<<<<<<<< Temporary merge branch 1
 add_user:
     path: /admin/add_user
     controller: App\Controller\SecurityController::add_user
@@ -42,6 +43,7 @@ add_user:
 delete_user:
     path: /admin/delete_user
     controller: App\Controller\SecurityController::delete_user
+=========
 #signup:
 #    path: /signup
 #    controller : #todo
@@ -54,3 +56,10 @@ ajax_check_state:
 delete_image_stack: 
     path: /delete-image-stack/{token}
     controller: App\Controller\MainController:deleteStack
+add_user:
+    path: /admin/add_user
+    controller: App\Controller\SecurityController::add_user
+
+delete_user:
+    path: /admin/delete_user
+    controller: App\Controller\SecurityController::delete_user
