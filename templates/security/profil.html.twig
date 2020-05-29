@@ -21,4 +21,11 @@
 
 {% block body %}
     <h2>Mon profil</h2>
+    <form id="profilForm" method="POST">
+    <label for="password1">Je souhaite modifier mon mot de passe actuel par celui-ci :</label><br/>
+    <input type="password" name="password1" id="password1" /><br/>
+    <label for="password2">Confirmer mon nouveau mot de passe :</label><br/>
+    <input type="password" name="password2" id="password2"/> <br/>
+    <button id="submitBtn" class="btn btn-secondary" disabled>Modifier mon mot de passe</button>
+    </form>
 {% endblock %}
