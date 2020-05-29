@@ -16,4 +16,5 @@
 
 /node_modules/
 /.vscode/
+composer.lock
 /public/images/uploads/
