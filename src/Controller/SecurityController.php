@@ -28,28 +28,10 @@ class SecurityController extends AbstractController
             'error' => $error
         ]);
     }
-
-    public function add_user()
-    {
-        //throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
-        
-        return $this->render('security/add_user.html.twig', [
     
-        ]);
-    }
-
-
-    public function delete_user()
+    public function profil()
     {
-        //throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
-        
-        return $this->render('security/delete_user.html.twig', [
-    
-        ]);
-    }
-
-    public function logout()
-    {
-        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+        return $this->render('security/profil.html.twig', [
+        ]); 
     }
 }

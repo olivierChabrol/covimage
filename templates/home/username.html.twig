@@ -6,22 +6,18 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ path('login') }}">Se connecter</a>
         </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/signup">S'enregistrer</a>
-    </li>
-    {# To be moved under the else once signing-in will be operational : #}
-    <li class="nav-item">
-        <a class="nav-link" href="/new">Analyser</a>
-    </li>
     {% else %}
         {% if is_granted('ROLE_ADMIN') %}
             <li class="nav-item">
-                <a class="nav-link" href="{{ path('add_user') }}">Ajouter un utilisateur</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('delete_user') }}">Supprimer un utilisateur</a>
+                <a class="nav-link" href="{{ path('user_index') }}">Gérer utilisateurs</a>
             </li>
         {% endif %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('profil') }}">Profil</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('upload') }}">Analyser</a>
+        </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ path('logout') }}">Se déconnecter</a>
         </li>

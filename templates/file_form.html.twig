@@ -2,10 +2,10 @@
 {% block title %}Nouvelle analyse{% endblock %}
 {% block header %}
     <li class="nav-item">
-        <a class="nav-link" href="/new">Analyser</a>
+        <a class="nav-link" href="{{ path('upload')}}">Analyser</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/logout">Se déconnecter</a>
+        <a class="nav-link" href="{{ path('logout') }}">Se déconnecter</a>
     </li>
 {% endblock %}
 {% block body%}
