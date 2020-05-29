@@ -15,7 +15,7 @@ class HomeController extends AbstractController
     {
         $user = $this->getUser();
         if (!$user) {
-            $username = "inconnu";
+            $username = "anonymous";
         } else {
             $username = $user->getEmail();
         }

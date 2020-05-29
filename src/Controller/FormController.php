@@ -11,9 +11,19 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 
+use Psr\Log\LoggerInterface;
+
 class FormController extends AbstractController
 {
-    public function new(Request $request) {
+    public function new(Request $request, LoggerInterface $logger) {
+
+        $user = $this->getUser();
+        if (!$user) {
+            $username = "anonymous";
+        } else {
+            $username = $user->getEmail();
+        }
+
         $fichier = new Fichier();
 
         $form = $this->createFormBuilder($fichier)
@@ -32,11 +42,19 @@ class FormController extends AbstractController
             $entityManager->flush();
             return $this->render('uploaded.html.twig', ['Images'=>array($fichier)]);
         } else {
-            return $this->render('file_form.html.twig', ['form'=> $form->createView()]);
+            return $this->render('file_form.html.twig', ['username'=>$username,'form'=> $form->createView()]);
         }
     }
 
-    public function image_stack(Request $request) {
+    public function image_stack(Request $request, LoggerInterface $logger) {
+
+        $user = $this->getUser();
+        if (!$user) {
+            $username = "anonymous";
+        } else {
+            $username = $user->getEmail();
+        }
+
         $ImageS = new ImageStack();
 
         $form = $this->createForm(ImageStackType::class,$ImageS);
@@ -64,7 +82,7 @@ class FormController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('visualize',['token'=>$ImageS->getToken()]);
         } else {
-            return $this->render('file_form.html.twig', ['form'=> $form->createView()]);
+            return $this->render('file_form.html.twig', ['username'=>$username,'form'=> $form->createView()]);
         }
     }
 }

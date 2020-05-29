@@ -1,19 +1,11 @@
-{% extends 'base.html.twig' %}
-{% block title %}Nouvelle analyse{% endblock %}
-{% block header %}
-    <li class="nav-item">
-        <a class="nav-link" href="{{ path('upload')}}">Analyser</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ path('logout') }}">Se déconnecter</a>
-    </li>
-{% endblock %}
+{% extends 'home/username.html.twig' %}
+{% block title %}New analysis{% endblock %}
 {% block body%}
     <div id="main" class="flex-full-center flex-vert">
         <h1>{{block('title')}}</h1>
         {{ form_start(form) }}
             {{ form_widget(form) }}
-            <button class="btn">{{ button_label|default('Envoyer') }}</button>
+            <button class="btn">{{ button_label|default('Upload') }}</button>
         {{ form_end(form) }}
     </div>
 {% endblock %}
