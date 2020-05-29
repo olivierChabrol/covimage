@@ -1,26 +1,14 @@
-index:
-  path: /welcome
-  controller: App\Controller\MainController::welcome
+homepage:
+  path: /
+  controller: App\Controller\HomeController::homepage
 
-upload:
-  path: /upload
-  controller: App\Controller\FormController::new
+analyse:
+  path: /analyse
+  controller: App\Controller\MainController::image_stack
 
-stack:
-  path: /new
-  controller: App\Controller\FormController::image_stack
-
-show:
-  path: /show/{token}
-  controller: App\Controller\MainController::show
-  
 visualize:
   path: /visualize/{token}
   controller: App\Controller\MainController::visualize
-
-homepage:
-    path: /
-    controller: App\Controller\HomeController::homepage
 
 login:
     path: /login
@@ -31,19 +19,7 @@ logout:
     controller: App\Controller\SecurityController::logout
     methods: GET
 
-add_user:
-    path: /admin/add_user
-    controller: App\Controller\SecurityController::add_user
-
-delete_user:
-    path: /admin/delete_user
-    controller: App\Controller\SecurityController::delete_user
-
 ajax_check_state:
     path: /ajax-check-state
     controller: App\Controller\MainController::ajax_check_state
     methods: [POST]
-
-delete_image_stack: 
-    path: /delete-image-stack/{token}
-    controller: App\Controller\MainController:deleteStack

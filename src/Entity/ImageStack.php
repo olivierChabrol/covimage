@@ -53,6 +53,11 @@ class ImageStack {
      */
     private $analysed;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $user;
+
     public function __construct() {
         $this->images = new ArrayCollection();
     }
@@ -148,6 +153,18 @@ class ImageStack {
     public function setAnalysed(bool $analysed): self
     {
         $this->analysed = $analysed;
+
+        return $this;
+    }
+
+    public function getUser(): ?string
+    {
+        return $this->user;
+    }
+
+    public function setUser(string $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
