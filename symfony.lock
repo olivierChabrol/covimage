@@ -108,8 +108,16 @@
     "egulias/email-validator": {
         "version": "2.1.17"
     },
+<<<<<<< HEAD
     "jms/metadata": {
         "version": "2.1.0"
+=======
+    "ipub/doctrine-crud": {
+        "version": "v2.3.1"
+    },
+    "jdorn/sql-formatter": {
+        "version": "v1.2.17"
+>>>>>>> Astrid
     },
     "laminas/laminas-code": {
         "version": "3.4.1"
@@ -122,6 +130,27 @@
     },
     "monolog/monolog": {
         "version": "2.1.0"
+    },
+    "nette/di": {
+        "version": "v3.0.4"
+    },
+    "nette/finder": {
+        "version": "v2.5.2"
+    },
+    "nette/neon": {
+        "version": "v3.1.2"
+    },
+    "nette/php-generator": {
+        "version": "v3.4.0"
+    },
+    "nette/robot-loader": {
+        "version": "v3.2.3"
+    },
+    "nette/schema": {
+        "version": "v1.0.2"
+    },
+    "nette/utils": {
+        "version": "v3.1.2"
     },
     "nikic/php-parser": {
         "version": "v4.4.0"
