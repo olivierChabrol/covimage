@@ -1,17 +1,8 @@
-{% extends 'home/layout.html.twig'%}
-
-{% block header %}
-    <li class="nav-item">
-        <a class="nav-link" href="/new">Analyser</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/logout">Se déconnecter</a>
-    </li>
-{% endblock %}
+{% extends 'home/username.html.twig'%}
 
 {% block page_contents %}
     <div id="main" class="flex-full-center flex-vert">
         <h1>Welcome to {{block('title')}}</h1>
-        <a href="{{ path('stack') }}">Analyser des fichiers</a>
+        <a href="{{ path('stack') }}">Analyse some images</a>
     </div>
 {% endblock %}
