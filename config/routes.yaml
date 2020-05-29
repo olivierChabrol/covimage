@@ -1,6 +1,23 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+  path: /welcome
+  controller: App\Controller\MainController::welcome
+
+upload:
+  path: /upload
+  controller: App\Controller\FormController::new
+
+stack:
+  path: /new
+  controller: App\Controller\FormController::image_stack
+
+show:
+  path: /show/{token}
+  controller: App\Controller\MainController::show
+  
+visualize:
+  path: /visualize/{token}
+  controller: App\Controller\MainController::visualize
+
 app_lucky_number:
     path: /lucky/number
     controller: App\Controller\LuckyController::number
@@ -18,6 +35,18 @@ logout:
     controller: App\Controller\SecurityController::logout
     methods: GET
 
+#signup:
+#    path: /signup
+#    controller : #todo
+
+ajax_check_state:
+    path: /ajax-check-state
+    controller: App\Controller\MainController::ajax_check_state
+    methods: [POST]
+
+delete_image_stack: 
+    path: /delete-image-stack/{token}
+    controller: App\Controller\MainController:deleteStack
 add_user:
     path: /admin/add_user
     controller: App\Controller\SecurityController::add_user

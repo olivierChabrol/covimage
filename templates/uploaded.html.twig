@@ -1,0 +1,13 @@
+{% extends 'home/layout.html.twig'%}
+{% block title %}Fichiers uploadés{% endblock %}
+{% block body%}
+    <div id="main" class="flex-full-center flex-vert">
+        <h1>Fichiers uploadés ({{Stack.getImages.toArray|length}}) : </h1>
+        <p>Retrouvez les sur <a href="/show/{{Stack.getToken}}">ce lien</a> pendant 7 jours.</p>
+        <div id="images_icons_list">
+            {% for image in Stack.getImages %}
+                <a href="{{ vich_uploader_asset(image)}}"><img class="uploaded-image" src="{{ vich_uploader_asset(image)}}"/></a> 
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
