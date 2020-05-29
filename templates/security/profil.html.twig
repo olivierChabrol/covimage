@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block header %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('user_index') }}">Gérer utilisateurs</a>
+        </li>
+    {% endif %}
+    <li class="nav-item">
+        <a class="nav-link" href="{{ path('profil') }}">Profil</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ path('upload') }}">Analyser</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ path('logout') }}">Se déconnecter</a>
+    </li>
+{% endblock %}
+
+{% block body %}
+    <h2>Mon profil</h2>
+{% endblock %}
