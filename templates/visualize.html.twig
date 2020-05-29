@@ -1,0 +1,25 @@
+{% extends 'home/layout.html.twig'%}
+{% block title %}Résultat{% endblock %}
+{% block body%}
+    <div id="main" class="flex-full-center flex-vert">
+        <h1>Visualiser ({{Stack.getImages.toArray|length}}) : </h1>
+        <div id="visualizer-box" token="{{Stack.getName}}-{{Stack.getToken}}">
+            <div id="slider-position">
+                <p><span id="actual-pos">{{Stack.getImages.toArray|length}}</span>/<span id="total">{{Stack.getImages.toArray|length}}</span></p>
+            </div>
+            <div id="slider-wrapper">
+                <input type="range" min="1" max="{{Stack.getImages.toArray|length}}" value="{{Stack.getImages.toArray|length}}" id="slider"/>
+            </div>
+            <div id="images_stack">
+                {% set liste = Stack.getImages %}
+                {% for i in 1..(21>liste|length ? liste|length : 21)%}
+                    {% set image = liste[liste|length-i] %}
+                    {% set imageUrl = vich_uploader_asset(image)%}
+                    <img class="visualized-image" imagecount="{{image.getName|split('_')[1]|split('.')[0]}}" src="{{ analysed ? imageUrl|replace({'uploads': 'results'}) : imageUrl }}"/>
+                {% endfor %}
+                <img id="loading_icon" src="{{asset('images/loading.gif')}}"/>
+            </div>
+            <p id="analysing"><span id="analyse_state">Analyse en cours...</span><br/><button token="{{Stack.getToken}}" id="check_analyser">Vérifier l'état</button></p>
+        </div>
+    </div>
+{% endblock %}

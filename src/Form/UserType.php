@@ -21,6 +21,7 @@ class UserType extends AbstractType
                 'choices'  => array(
                     'USER' => 'ROLE_USER',
                     'ADMIN'=> 'ROLE_ADMIN',
+                    'AUTHOR'=> 'ROLE_AUTHOR',
                 )])
             ->add('password')
         ;

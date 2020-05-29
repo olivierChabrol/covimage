@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ImageStack index{% endblock %}
+
+{% block body %}
+    <h1>ImageStack index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Token</th>
+                <th>Analysed</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for image_stack in image_stacks %}
+            <tr>
+                <td>{{ image_stack.id }}</td>
+                <td>{{ image_stack.date ? image_stack.date|date('Y-m-d') : '' }}</td>
+                <td>{{ image_stack.name }}</td>
+                <td>{{ image_stack.quantity }}</td>
+                <td><a href="/visualize/{{ image_stack.token }}">{{ image_stack.token }}</a></td>
+                <td>{{ image_stack.analysed ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('image_stack_show', {'id': image_stack.id}) }}">show</a>
+                    <a href="{{ path('image_stack_edit', {'id': image_stack.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('image_stack_new') }}">Create new</a>
+{% endblock %}
