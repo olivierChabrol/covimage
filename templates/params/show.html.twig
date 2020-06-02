@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Params{% endblock %}
+
+{% block body %}
+    <h1>Params</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ param.id }}</td>
+            </tr>
+            <tr>
+                <th>Type_param</th>
+                <td>{{ param.typeParam }}</td>
+            </tr>
+            <tr>
+                <th>Value</th>
+                <td>{{ param.value }}</td>
+            </tr>
+            <tr>
+                <th>Color</th>
+                <td>{{ param.color }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('params_index') }}">back to list</a>
+
+    <a href="{{ path('params_edit', {'id': param.id}) }}">edit</a>
+
+    {{ include('params/_delete_form.html.twig') }}
+{% endblock %}
