@@ -22,7 +22,7 @@ class ImageStackRepository extends ServiceEntityRepository
     // /**
     //  * @return ImageStack[] Returns an array of ImageStack objects
     //  */
-    /*
+    
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('i')
@@ -34,9 +34,9 @@ class ImageStackRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+    
 
-    /*
+    
     public function findOneBySomeField($value): ?ImageStack
     {
         return $this->createQueryBuilder('i')
@@ -46,5 +46,5 @@ class ImageStackRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-    */
+    
 }
