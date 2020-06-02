@@ -25,7 +25,7 @@ class MainController extends AbstractController
     }
     public function visualize(string $token='',LoggerInterface $logger) {
         $this->setUserName();
-        if (strlen($token)>0) {
+        if (strlen($token)==14) {
             $ImageS = $this->getDoctrine()
                 ->getRepository(ImageStack::class)
                 ->findOneBy(['token' => $token]);
@@ -87,14 +87,50 @@ class MainController extends AbstractController
             }
             $entityManager->persist($ImageS);
             $entityManager->flush();
-            $this->processStack($ImageS);
-            return $this->redirectToRoute('visualize',['token'=>$ImageS->getToken()]);
+            return $this->redirectToRoute('uploaded',['token'=>$ImageS->getToken()]);
         } else {
             return $this->render('file_form.html.twig', ['username'=>$this->username,'form'=> $form->createView()]);
         }
     }
-    public function processStack(ImageStack $ImageS) {
-        return;
+    public function uploaded(string $token) {
+        if (strlen($token)==14) {
+            $ImageS = $this->getDoctrine()
+                ->getRepository(ImageStack::class)
+                ->findOneBy(['token' => $token]);
+            if (!$ImageS) {
+                return new Response("Pas trouvé !");
+            }
+            return $this->render('uploaded.html.twig', ['username'=>$this->username,'Stack'=>$ImageS]);
+        }
+        return new Response("ID nul");
+    }
+    public function ajax_start_processing(Request $req) {
+        if ($req->isXMLHttpRequest()) {
+            $token = $req->get('token');
+            /**
+             * @var ImageStack
+             */
+            $ImageS = $this->getDoctrine()->getRepository(ImageStack::class)->findOneBy(['token' => $token]);
+            if ($ImageS===null) {
+                return new Response("Invalid token");
+            }
+            if ($ImageS->getAnalysed()) {
+                return new JsonResponse(array('success'=>true));
+            }
+            $command = escapeshellcmd('../dicom.py');
+            exec($command,$output,$code);
+            if ($code==0) {
+                $ImageS->setAnalysed(true);
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($ImageS);
+                $entityManager->flush();
+                return new JsonResponse(array('success'=>true));
+            } else {
+                return new JsonResponse(array('success'=>false));
+            }
+        } else {
+            return new Response("This url is for ajax only");
+        }
     }
 }
 ?>

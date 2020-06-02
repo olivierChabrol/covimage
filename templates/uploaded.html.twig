@@ -1,0 +1,12 @@
+{% extends 'home/username.html.twig'%}
+{% block title %}{{'Uploaded visualization'}}{% endblock %}
+{% block body%}
+    <div id="main" class="flex-full-center flex-vert">
+        <h1>Successfully uploaded {{Stack.getImages.toArray|length}} images : </h1>
+        <div id="upload-controls">
+            <button id="start-processing" {{Stack.getAnalysed==true ? 'disabled': ''}} token="{{Stack.getToken}}">Start processing</button>
+            <p id="processing-state">{{Stack.getAnalysed==true ? "Processing is done" : ""}}</p>
+            <p id="processing-message">Results {{Stack.getAnalysed==true ? 'are' : 'will be' }} available <a href="{{path('visualize', {'token': Stack.getToken})}}">here</a> </p>
+        </div>
+    </div>
+{% endblock %}

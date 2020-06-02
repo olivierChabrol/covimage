@@ -30,6 +30,7 @@
                 <td>{{ image_stack.user }}</td>
                 <td>
                     <a href="{{ path('visualize', {'token': image_stack.token}) }}">show</a>
+                    <a href="{{ path('image_stack_edit', {'id': image_stack.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

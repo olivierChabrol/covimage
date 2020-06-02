@@ -3,12 +3,16 @@ homepage:
   controller: App\Controller\HomeController::homepage
 
 analyse:
-  path: /analyse
+  path: /analyze
   controller: App\Controller\MainController::image_stack
 
 visualize:
-  path: /visualize/{token}
+  path: /analyze/visualize/{token}
   controller: App\Controller\MainController::visualize
+
+uploaded:
+  path: /analyze/uploaded/{token}
+  controller: App\Controller\MainController::uploaded
 
 login:
     path: /login
@@ -22,4 +26,8 @@ logout:
 ajax_check_state:
     path: /ajax-check-state
     controller: App\Controller\MainController::ajax_check_state
+    methods: [POST]
+ajax_start_processing:
+    path: /ajax-start-processing
+    controller: App\Controller\MainController::ajax_start_processing
     methods: [POST]

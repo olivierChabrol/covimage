@@ -9,10 +9,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
+use Symfony\Component\Filesystem\Filesystem;
 
 use Psr\Log\LoggerInterface;
 /**
- * @Route("/image/stack")
+ * @Route("/admin/analysis")
  */
 class ImageStackController extends AbstractController
 {
@@ -68,6 +70,11 @@ class ImageStackController extends AbstractController
 
             return $this->redirectToRoute('image_stack_index');
         }
+        return $this->render('image_stack/show.html.twig', [
+            'image_stack' => $imageStack,
+            'username'=> $this->username,
+            'form'=>$form->createView(),
+        ]);
     }
 
     /**
@@ -76,7 +83,21 @@ class ImageStackController extends AbstractController
     public function delete(Request $request, ImageStack $imageStack): Response
     {
         if ($this->isCsrfTokenValid('delete'.$imageStack->getId(), $request->request->get('_token'))) {
+            
             $entityManager = $this->getDoctrine()->getManager();
+            if ($imageStack->getAnalysed()) {
+                $filesys = new Filesystem();
+                $dir = "images/results/".strtolower($imageStack->getName()).'-'.$imageStack->getToken();
+                foreach ($imageStack->getImages() as $unit) {
+                    try {
+                        $filesys->remove($dir."/".$unit->getName());
+                    } catch (IOExceptionInterface $exception) {
+                        echo "An error occurred while creating your directory at ".$exception->getPath();
+                    }
+                }
+                $filesys->remove($dir);
+                $filesys->remove(str_replace('results','uploads',$dir));
+            }
             $entityManager->remove($imageStack);
             $entityManager->flush();
         }

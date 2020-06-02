@@ -15,11 +15,17 @@
                 {% for i in 1..(21>liste|length ? liste|length : 21)%}
                     {% set image = liste[liste|length-i] %}
                     {% set imageUrl = vich_uploader_asset(image)%}
-                    <img class="visualized-image" imagecount="{{image.getName|split('_')[1]|split('.')[0]}}" src="{{ analysed ? imageUrl|replace({'uploads': 'results'}) : imageUrl }}"/>
+                    <img class="visualized-image" imagecount="{{image.getName|split('_')[1]|split('.')[0]}}" src="{{ analysed ? imageUrl|replace({'uploads': 'results', 'dcm': 'png'}) : imageUrl }}"/>
                 {% endfor %}
                 <img id="loading_icon" src="{{asset('images/loading.gif')}}"/>
             </div>
-            <p id="analysing"><span id="analyse_state">Processing in progress...</span><br/><button token="{{Stack.getToken}}" id="check_analyser">Check state</button></p>
+            <p id="analysing"><span id="analyse_state">
+                {% if Stack.getAnalysed %}
+                Processing finished</span>
+                {% else %}
+                Processing in progress...</span><br/><button token="{{Stack.getToken}}" id="check_analyser">Check state</button>
+                {% endif %}
+            </p>
         </div>
     </div>
 {% endblock %}

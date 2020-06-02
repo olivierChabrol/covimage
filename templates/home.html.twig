@@ -4,6 +4,10 @@
     <div id="logged_as">{{username=='anonymous' ? 'You\'re not signed in' : 'You\'re signed in as '~username}}</div>
     <div id="main" class="flex-full-center flex-vert">
         <h1>Welcome to {{block('title')}}</h1>
+        {% if username=='anonymous' %}
+        <a href="{{ path('login') }}">Login</a>
+        {% else %}
         <a href="{{ path('analyse') }}">Analyse some images</a>
+        {% endif %}
     </div>
 {% endblock %}
