@@ -11,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Params
 {
     public const PARAM = 1;
+    public const SCRIPT_PATH_TYPE = 2;
+    public const SCRIPT_OUTPUT_TYPE = 3;
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -36,6 +38,13 @@ class Params
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getTypeParam(): ?int

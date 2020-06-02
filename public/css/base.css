@@ -123,6 +123,7 @@ form[name=image_stack] button:hover {
     margin-right: 2em;
 }
 #upload-controls p {
+    margin-left: 1em;
     line-height: 3em;
     font-weight: bold;
 }

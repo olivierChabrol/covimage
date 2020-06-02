@@ -70,7 +70,7 @@ class ImageStackController extends AbstractController
 
             return $this->redirectToRoute('image_stack_index');
         }
-        return $this->render('image_stack/show.html.twig', [
+        return $this->render('image_stack/edit.html.twig', [
             'image_stack' => $imageStack,
             'username'=> $this->username,
             'form'=>$form->createView(),

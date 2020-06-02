@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\ImageUnit;
 use App\Entity\ImageStack;
 use App\Form\ImageStackType;
+use App\Entity\Params;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -117,7 +118,10 @@ class MainController extends AbstractController
             if ($ImageS->getAnalysed()) {
                 return new JsonResponse(array('success'=>true));
             }
-            $command = escapeshellcmd('../dicom.py '.$ImageS->getName().'-'.$token);
+            $repo =$this->getDoctrine()->getRepository(Params::class);
+            $commandPath = $repo->findOneBy(['type_param'=>Params::SCRIPT_PATH_TYPE])->getValue();
+            $outputPath = $repo->findOneBy(['type_param'=>Params::SCRIPT_OUTPUT_TYPE])->getValue();
+            $command = escapeshellcmd('../'.$commandPath.' '.$ImageS->getName().'-'.$token.' '.$outputPath);
             exec($command,$output,$code);
             if ($code==0) {
                 $ImageS->setAnalysed(true);

@@ -77,11 +77,10 @@ PATIENTS = glob('images/uploads/*')
 
 if len(sys.argv)>1:
     print('Argument passed, processing given folder : images/uploads/'+sys.argv[1]+'/ and storing results in : '+path_save)
-    Dicom_to_png('images/uploads/'+sys.argv[1]+'/', path_save)
+    Dicom_to_png('images/uploads/'+sys.argv[1]+'/', sys.argv[2])
 else :
     print('No argument, processing all folders in images/uploads/*')
     for patient in PATIENTS:
-        print(patient)
         Dicom_to_png(patient+'/', path_save)
 
 
