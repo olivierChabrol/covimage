@@ -2,34 +2,37 @@
 {% extends 'home/layout.html.twig'%}
 
 {% block header %}
-    {% if username == "anonymous" %}
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('login') }}">Sign in</a>
-        </li>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item"><a class="nav-link" href="{{ path('login') }}">
+                <i class="fas fa-sign-in-alt"></i> {% trans into 'fr_FR' %}Login{% endtrans %}
+            </a></li>
+        </ul>
+        <ul>
     {% else %}
         <li class="nav-item">
-            <a class="nav-link" href="{{path('analyse')}}">Analysis</a>
+            <a class="nav-link" href="{{path('analyse')}}">{% trans into 'fr_FR' %}Analysis{% endtrans %}</a>
         </li>
         {% if is_granted('ROLE_ADMIN') %}
             <li class="nav-item">
-                <a class="nav-link" href="{{ path('image_stack_index') }}">Analysis list</a>
+                <a class="nav-link" href="{{ path('image_stack_index') }}">{% trans into 'fr_FR' %}Analysis list{% endtrans %}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ path('user_index') }}">Users List</a>
+                <a class="nav-link" href="{{ path('user_index') }}">{% trans into 'fr_FR' %}Users list{% endtrans %}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ path('user_new') }}">Add new user</a>
+                <a class="nav-link" href="{{ path('user_new') }}">{% trans into 'fr_FR' %}Add new user{% endtrans %}</a>
             </li>
         {% endif %}
         <li class="nav-item">
-            <a class="nav-link" href="{{ path('logout') }}">Sign out</a>
+            <a class="nav-link" href="{{ path('profil') }}">{% trans into 'fr_FR' %}Profile{% endtrans %}</a>
         </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item"><a class="nav-link" href="{{ path('logout') }}">
+                <i class="fas fa-sign-out-alt"></i> {% trans into 'fr_FR' %}Log out{% endtrans %}
+            </a></li>
+        </ul>
     {% endif %}
-{% endblock %}
-
-{% block page_contents %}Welcome {{username}}.
-{% if username == "anonymous" %}
-    <p>It looks like you're not logged in. Log in to access more options </p>
-{% endif %}
-
 {% endblock %}

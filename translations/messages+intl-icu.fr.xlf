@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="HsmKXX7" resname="I would like to modify my password with this one :">
+        <source>I would like to modify my password with this one :</source>
+        <target>__I would like to modify my password with this one :</target>
+      </trans-unit>
+      <trans-unit id="58RHgCt" resname="Confirm my new password :">
+        <source>Confirm my new password :</source>
+        <target>__Confirm my new password :</target>
+      </trans-unit>
+      <trans-unit id="nWMiwfT" resname="Login">
+        <source>Login</source>
+        <target>__Login</target>
+      </trans-unit>
+      <trans-unit id="5w2OuQU" resname="Analysis">
+        <source>Analysis</source>
+        <target>__Analysis</target>
+      </trans-unit>
+      <trans-unit id="BukawVS" resname="Analysis list">
+        <source>Analysis list</source>
+        <target>__Analysis list</target>
+      </trans-unit>
+      <trans-unit id="6Q3ypTV" resname="Users List">
+        <source>Users List</source>
+        <target>__Users List</target>
+      </trans-unit>
+      <trans-unit id="SBrkRVV" resname="Add new user">
+        <source>Add new user</source>
+        <target>__Add new user</target>
+      </trans-unit>
+      <trans-unit id="4mfTQ4I" resname="Profil">
+        <source>Profil</source>
+        <target>__Profil</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,7 +1,10 @@
 {% extends 'home/username.html.twig'%}
 
 {% block page_contents %}
-    <div id="logged_as">{{username=='anonymous' ? 'You\'re not signed in' : 'You\'re signed in as '~username}}</div>
+    <div id="logged_as">
+    {# TODO: TRANSLATION #}
+        {{ is_granted('IS_AUTHENTICATED_FULLY') == false ? 'You\'re not signed in' : 'You\'re signed in as '~username}}
+    </div>
     <div id="main" class="flex-full-center flex-vert">
         <h1>Welcome to {{block('title')}}</h1>
         {% if username=='anonymous' %}

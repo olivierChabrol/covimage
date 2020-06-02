@@ -8,10 +8,10 @@
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
     
-    <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
+    <h1 class="h3 mb-3 font-weight-normal">{% trans into 'fr_FR' %}Login{% endtrans %}</h1>
     <label for="inputEmail">E-mail <i class="fas fa-at"></i></label>
     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
-    <label for="inputPassword">Password <i class="fas fa-key"></i></label>
+    <label for="inputPassword">{% trans into 'fr_FR' %}Password{% endtrans %} <i class="fas fa-key"></i></label>
     <input type="password" name="password" id="inputPassword" class="form-control" required>
 
     <input type="hidden" name="_csrf_token"
@@ -30,7 +30,7 @@
     #}
 
     <button class="btn btn-lg btn-primary" type="submit">
-        Login <i class="fas fa-check"></i>
+        {% trans into 'fr_FR' %}Login{% endtrans %} <i class="fas fa-check"></i>
     </button>
 </form>
 {% endblock %}

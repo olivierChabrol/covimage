@@ -1,0 +1,23 @@
+# translations/messages.fr.yaml
+
+#NAVBAR#
+Login: Se connecter
+Home: Accueil
+Analysis: Analyse
+Analysis list: Liste d'analyse
+Users list: Liste d'utilisateurs
+Add new user: Ajouter un utilisateur
+Profile: Profil
+Log out : Se déconnecter
+
+#LOGIN#
+Password: Mot de passe
+
+#HOME#
+#TODO : You\'re not signed in: Vous n\'êtes pas connecté
+#TODO : You\'re signed in as: Vous êtes connecté en tant que
+Welcome to: Bienvenue sur
+Analyse some images: Analyser des images
+
+#FILE_FORM#
+New analysis: Nouvelle analyse

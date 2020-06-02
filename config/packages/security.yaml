@@ -37,4 +37,5 @@ security:
         - { path: '^/login$',   roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: '^/logout',   roles: IS_AUTHENTICATED_FULLY }
         - { path: '^/analyse',   roles: IS_AUTHENTICATED_FULLY }
+        - { path: '^/profil',   roles: IS_AUTHENTICATED_FULLY }
         - { path: '^/admin', roles: [ROLE_ADMIN] }

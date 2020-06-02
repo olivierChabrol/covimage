@@ -32,11 +32,12 @@ class ParamsController extends AbstractController
     public function new(Request $request): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
+        $entityGet = $this->getDoctrine()->getRepository(Params::Class);
         $param = new Params();
         $form = $this->createForm(ParamsType::class, $param, ['entity_manager' => $entityManager,]);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid() && $entityGet->findOneBy(['type_param'=> $param->getTypeParam() , 'value'=> $param->getValue()]) == NULL) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($param);
             $entityManager->flush();
@@ -69,7 +70,7 @@ class ParamsController extends AbstractController
         $form = $this->createForm(ParamsType::class, $param, ['entity_manager' => $entityManager,]);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid() && $param->getId() != 1) {
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('params_index');
@@ -86,7 +87,7 @@ class ParamsController extends AbstractController
      */
     public function delete(Request $request, Params $param): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$param->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$param->getId(), $request->request->get('_token')) && $param->getId() != 1) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($param);
             $entityManager->flush();
