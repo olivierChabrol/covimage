@@ -21,7 +21,7 @@ composer.lock
 /node_modules/
 /.vscode/
 composer.lock
-/public/images/uploads/
+/public/images/
 symfony.lock
 
 print.py
