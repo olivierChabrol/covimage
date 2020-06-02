@@ -19,6 +19,7 @@ Cette action va créer sur PHPMyAdmin la base de données "DB_Test". Cependant e
 Afin de **récupérer les attributs** et tables du code :
 
 * php bin/console make:migration
+* php bin/console doctrine:migrations:migrate
 
 On obtient alors la structure de la table qui est décrite dans le code. Il manque toujours les éléments contenus à l'intérieur.
 

@@ -3,27 +3,36 @@
 namespace App\Controller;
 
 use App\Entity\ImageStack;
-use App\Form\ImageStack1Type;
+use App\Form\ImageStackType;
 use App\Repository\ImageStackRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
-use Symfony\Component\Filesystem\Filesystem;
 
+use Psr\Log\LoggerInterface;
 /**
  * @Route("/image/stack")
  */
 class ImageStackController extends AbstractController
 {
+    private $username;
+    private function setUserName() {
+        $user = $this->getUser();
+        if (!$user) {
+            $this->username = "anonymous";
+        } else {
+            $this->username = $user->getEmail();
+        }
+    }
     /**
      * @Route("/", name="image_stack_index", methods={"GET"})
      */
-    public function index(ImageStackRepository $imageStackRepository): Response
+    public function index(ImageStackRepository $imageStackRepository,LoggerInterface $logger): Response
     {
         return $this->render('image_stack/index.html.twig', [
             'image_stacks' => $imageStackRepository->findAll(),
+            'username'=> $this->username,
         ]);
     }
 
@@ -32,22 +41,7 @@ class ImageStackController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        $imageStack = new ImageStack();
-        $form = $this->createForm(ImageStack1Type::class, $imageStack);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($imageStack);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('image_stack_index');
-        }
-
-        return $this->render('image_stack/new.html.twig', [
-            'image_stack' => $imageStack,
-            'form' => $form->createView(),
-        ]);
+        return $this->redirectToRoute('analyse');
     }
 
     /**
@@ -57,6 +51,7 @@ class ImageStackController extends AbstractController
     {
         return $this->render('image_stack/show.html.twig', [
             'image_stack' => $imageStack,
+            'username'=> $this->username,
         ]);
     }
 
@@ -65,7 +60,7 @@ class ImageStackController extends AbstractController
      */
     public function edit(Request $request, ImageStack $imageStack): Response
     {
-        $form = $this->createForm(ImageStack1Type::class, $imageStack);
+        $form = $this->createForm(ImageStackType::class, $imageStack);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -73,11 +68,6 @@ class ImageStackController extends AbstractController
 
             return $this->redirectToRoute('image_stack_index');
         }
-
-        return $this->render('image_stack/edit.html.twig', [
-            'image_stack' => $imageStack,
-            'form' => $form->createView(),
-        ]);
     }
 
     /**
@@ -87,18 +77,6 @@ class ImageStackController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$imageStack->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
-            if ($imageStack->getAnalysed()) {
-                $filesys = new Filesystem();
-                $dir = "images/results/".strtolower($imageStack->getName()).'-'.$imageStack->getToken();
-                foreach ($imageStack->getImages() as $unit) {
-                    try {
-                        $filesys->remove($dir."/".$unit->getName());
-                    } catch (IOExceptionInterface $exception) {
-                        echo "An error occurred while creating your directory at ".$exception->getPath();
-                    }
-                }
-                $filesys->remove($dir);
-            }
             $entityManager->remove($imageStack);
             $entityManager->flush();
         }

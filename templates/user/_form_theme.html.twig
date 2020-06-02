@@ -1,0 +1,28 @@
+{% block _user_email_label %}
+<label for='{{id}}'>E-mail <i class="fas fa-at"></i></label>
+{% endblock %}
+{% block _user_email_widget %}
+    <input type="email" {{ block('widget_attributes') }} class="form-control" autofocus {% if value is defined %} value="{{ value }}"{% endif %}>
+{% endblock %}
+
+{% block _user_roles_label %}
+    <label> Roles <i class="fas fa-users"></i></label>
+{% endblock %}
+
+{%- block checkbox_widget -%}
+<div class="form-check">
+    <input class="form-check-input" type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+{%- endblock -%}
+
+{% block checkbox_label %}
+    <label class="form-check-label" {{ block('widget_attributes') }}> {{ label }} </label>
+</div>
+{% endblock %}
+
+
+{% block _user_password_label %}
+    <label for="{{id}}">Password <i class="fas fa-key"></i></label>
+{% endblock %}
+{% block _user_password_widget %}
+    <input type="password" {{ block('widget_attributes') }} class="form-control" {% if value is defined %} value="{{ value }}"{% endif %}>
+{% endblock %}

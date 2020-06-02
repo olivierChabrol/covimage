@@ -1,23 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends 'home/username.html.twig' %}
 
 {% block title %}Profil{% endblock %}
-
-{% block header %}
-    {% if is_granted('ROLE_ADMIN') %}
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('user_index') }}">Gérer utilisateurs</a>
-        </li>
-    {% endif %}
-    <li class="nav-item">
-        <a class="nav-link" href="{{ path('profil') }}">Profil</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ path('upload') }}">Analyser</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ path('logout') }}">Se déconnecter</a>
-    </li>
-{% endblock %}
 
 {% block body %}
     <h2>Mon profil</h2>
@@ -26,6 +9,6 @@
     <input type="password" name="password1" id="password1" /><br/>
     <label for="password2">Confirmer mon nouveau mot de passe :</label><br/>
     <input type="password" name="password2" id="password2"/> <br/>
-    <input type="button" user_id="{{user.getId}}" id="submitBtn" class="btn btn-secondary" disabled value="Modifier mon mot de passe"></input>
+    <input type="button" user_id="{{ user.getId }}" id="submitBtn" class="btn btn-secondary" disabled value="Modifier mon mot de passe"></input>
     </form>
 {% endblock %}

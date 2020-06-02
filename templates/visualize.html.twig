@@ -1,8 +1,8 @@
-{% extends 'home/layout.html.twig'%}
-{% block title %}Résultat{% endblock %}
+{% extends 'home/username.html.twig'%}
+{% block title %}{{analysed ? 'Results visualization' : 'Uploaded visualization'}}{% endblock %}
 {% block body%}
     <div id="main" class="flex-full-center flex-vert">
-        <h1>Visualiser ({{Stack.getImages.toArray|length}}) : </h1>
+        <h1>Visualizer ({{Stack.getImages.toArray|length}} images) : </h1>
         <div id="visualizer-box" token="{{Stack.getName}}-{{Stack.getToken}}">
             <div id="slider-position">
                 <p><span id="actual-pos">{{Stack.getImages.toArray|length}}</span>/<span id="total">{{Stack.getImages.toArray|length}}</span></p>
@@ -19,7 +19,7 @@
                 {% endfor %}
                 <img id="loading_icon" src="{{asset('images/loading.gif')}}"/>
             </div>
-            <p id="analysing"><span id="analyse_state">Analyse en cours...</span><br/><button token="{{Stack.getToken}}" id="check_analyser">Vérifier l'état</button></p>
+            <p id="analysing"><span id="analyse_state">Processing in progress...</span><br/><button token="{{Stack.getToken}}" id="check_analyser">Check state</button></p>
         </div>
     </div>
 {% endblock %}

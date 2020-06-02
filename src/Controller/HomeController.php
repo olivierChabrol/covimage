@@ -15,12 +15,12 @@ class HomeController extends AbstractController
     {
         $user = $this->getUser();
         if (!$user) {
-            $username = "inconnu";
+            $username = "anonymous";
         } else {
             $username = $user->getEmail();
         }
         
-        return $this->render('home/username.html.twig', [
+        return $this->render('home.html.twig', [
             'username' => $username,
         ]);
     }
