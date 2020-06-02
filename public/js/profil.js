@@ -1,5 +1,4 @@
 jQuery(function ($){
-    
     $("#password2").blur(function() {
         if ($(this).val() == "") {
             $("#submitBtn").removeClass("btn-primary");
@@ -13,12 +12,17 @@ jQuery(function ($){
     });
 
     $("#submitBtn").click(function() {
-        if ($("#password1") == $("#password2")) {
-            // traitement bdd
-        } else {
-            //form control : mot de passes différents
+        console.log($("#password1").val());
+        console.log($("#password2").val());
+        if ($("#password1").val() == $("#password2").val()) {
+            console.log("je modifie la bdd");
+            $.post("/update",{user: getUser()}, function (response) {
+                if (reponse.sucess) {
+                    alert("bdd modifiée");
+                } else {
+                    console.log("mot de passes différents");
+                }
+            });
         }
     });
-
-
 });

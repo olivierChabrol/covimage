@@ -39,6 +39,11 @@ profil:
   path: /profil
   controller: App\Controller\SecurityController::profil
 
+update_password_profil:
+  path: /update
+  controller: App\Controller\SecurityController::update_password_profil
+  methods: [POST]
+
 ajax_check_state:
     path: /ajax-check-state
     controller: App\Controller\MainController::ajax_check_state

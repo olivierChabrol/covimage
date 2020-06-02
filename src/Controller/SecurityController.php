@@ -5,6 +5,9 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\HttpFoundation\Request;
+use App\Entity\User;
+
 
 use Psr\Log\LoggerInterface;
 
@@ -30,8 +33,28 @@ class SecurityController extends AbstractController
     }
     
     public function profil()
-    {
+    {       
         return $this->render('security/profil.html.twig', [
-        ]); 
+        ]);
     }
+
+    public function update_password_profil(Request $req) 
+    {
+        if ($req->isXMLHttpRequest()) {
+            $id = $req->get('user');
+            $em = $this->getDoctrine()->getManager();
+            $user = $em->getRepository(User::class)->find($id);
+            
+            if (!$user) 
+            {
+                throw $this->createNotFoundException(
+                    'No user found for id ' . $user
+                );
+            }
+            $em->flush();
+            return $this->redirectToRoute('profil');
+        } else {
+            return new Response("This url is for ajax only");
+        }
+}
 }
