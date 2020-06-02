@@ -2,6 +2,10 @@ nav {
     margin-bottom: 1em;
 }
 
+#logged_as {
+    width: 100%;
+    text-align: right;
+}
 form {
     max-width: 50%;
 }

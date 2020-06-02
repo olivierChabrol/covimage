@@ -5,6 +5,10 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\HttpFoundation\Request;
+use App\Entity\User;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Psr\Log\LoggerInterface;
 
@@ -28,28 +32,33 @@ class SecurityController extends AbstractController
             'error' => $error
         ]);
     }
-
-    public function add_user()
-    {
-        //throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
-        
-        return $this->render('security/add_user.html.twig', [
     
+    public function profil()
+    {       
+        $user = $this->getUser();
+        return $this->render('security/profil.html.twig', [
+            'user'=>$user,
         ]);
     }
 
-
-    public function delete_user()
+    public function update_password_profil(Request $req, UserPasswordEncoderInterface $passwordEncoder) 
     {
-        //throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
-        
-        return $this->render('security/delete_user.html.twig', [
-    
-        ]);
-    }
-
-    public function logout()
-    {
-        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
-    }
+        if ($req->isXMLHttpRequest()) {
+            $id = $req->get('user');
+            $em = $this->getDoctrine()->getManager();
+            $user = $em->getRepository(User::class)->find($id);
+            $user->setPassword($passwordEncoder->encodePassword($user,$req->get('password')));
+            if (!$user) 
+            {
+                throw $this->createNotFoundException(
+                    'No user found for id ' . $user
+                );
+            }
+            $em->flush();
+            return new JsonResponse(array('success'=>true));
+            //return $this->redirectToRoute('profil');
+        } else {
+            return new Response("This url is for ajax only");
+        }
+}
 }
