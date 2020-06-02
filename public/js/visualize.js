@@ -39,6 +39,7 @@ jQuery(function($) {
         $.post("/ajax-start-processing",{token: $(this).attr('token')},function (response) {
             if (response.success) {
                 $("#processing-state").html("Processing finished");
+                $("#loading_icon").hide();
                 let bak = $("#processing-message").html().split("<a ")[1];
                 $("#processing-message").html('Results are available <a '+bak);
             } else {
@@ -46,5 +47,7 @@ jQuery(function($) {
             }
         });
         $("#processing-state").html('Processing started');
+        $("#loading_icon").show();
+        $("#start-processing").hide();
     });
 });

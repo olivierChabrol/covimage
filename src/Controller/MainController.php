@@ -117,7 +117,7 @@ class MainController extends AbstractController
             if ($ImageS->getAnalysed()) {
                 return new JsonResponse(array('success'=>true));
             }
-            $command = escapeshellcmd('../dicom.py');
+            $command = escapeshellcmd('../dicom.py '.$ImageS->getName().'-'.$token);
             exec($command,$output,$code);
             if ($code==0) {
                 $ImageS->setAnalysed(true);

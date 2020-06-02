@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 import os
 from skimage import exposure
 from skimage.io import imsave
-
+import sys
 
 def normalize_minmax(data):
     """
@@ -71,16 +71,18 @@ def Dicom_to_png(root, path_save):
 
 
 
-ROOT = '..\\DATA\\COVID19\\'
+#ROOT = '..\\DATA\\COVID19\\'
 path_save = 'images/results/'
 PATIENTS = glob('images/uploads/*')
 
-
-
-for patient in PATIENTS:
-    Dicom_to_png(patient+'/', path_save)
-    
-
+if len(sys.argv)>1:
+    print('Argument passed, processing given folder : images/uploads/'+sys.argv[1]+'/ and storing results in : '+path_save)
+    Dicom_to_png('images/uploads/'+sys.argv[1]+'/', path_save)
+else :
+    print('No argument, processing all folders in images/uploads/*')
+    for patient in PATIENTS:
+        print(patient)
+        Dicom_to_png(patient+'/', path_save)
 
 
 #img = pydicom.read_file(ROOT+'\\665617-31796\\IM146').pixel_array

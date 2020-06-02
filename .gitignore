@@ -24,3 +24,5 @@ composer.lock
 /public/images/uploads/
 /public/images/results/
 *.lock
+
+print.py

@@ -108,3 +108,21 @@ form[name=image_stack] button:hover {
     width: 128px;
     transform: translate(192px, 192px);
 }
+
+#upload-controls {
+    margin: 2em 0 1em 0;
+    height: 3em;
+    display: flex;
+}
+#upload-controls img#loading_icon {
+    height: 2.6em;
+    width: 2.6em;
+    display: none;
+}
+#upload-controls button {
+    margin-right: 2em;
+}
+#upload-controls p {
+    line-height: 3em;
+    font-weight: bold;
+}
