@@ -16,8 +16,9 @@ jQuery(function ($){
         console.log($("#password2").val());
         if ($("#password1").val() == $("#password2").val()) {
             console.log("je modifie la bdd");
-            $.post("/update",{user: getUser()}, function (response) {
-                if (reponse.sucess) {
+            $.post("/update",{'user': $(this).attr('user_id'),
+                              'password': $("#password1").val()}, function (response) {
+                if (response.success) {
                     alert("bdd modifiée");
                 } else {
                     console.log("mot de passes différents");
