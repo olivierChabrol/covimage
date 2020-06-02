@@ -2,7 +2,7 @@
 {% extends 'home/layout.html.twig'%}
 
 {% block header %}
-    {% if username == "anonymous" %}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
         <li class="nav-item">
             <a class="nav-link" href="{{ path('login') }}">Sign in</a>
         </li>
