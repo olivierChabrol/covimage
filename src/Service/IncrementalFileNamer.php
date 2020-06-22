@@ -22,7 +22,7 @@ class IncrementalFileNamer implements NamerInterface, ConfigurableInterface
     /**
      * @var int
      */
-    private static $index = 1;
+    private static $index = 0;
 
     /**
      * @var string
@@ -60,7 +60,7 @@ class IncrementalFileNamer implements NamerInterface, ConfigurableInterface
                 $this::$index++;
             } else {
                 $this::$token = $this->getPropertyValue($object, $this->tokenPath);
-                $this::$index = 1;
+                $this::$index = 0;
             }
         } catch (NoSuchPropertyException $e) {
             throw new NameGenerationException(\sprintf('File name could not be generated: property %s does not exist.', $this->tokenPath), $e->getCode(), $e);

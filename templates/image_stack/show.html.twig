@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'home/username.html.twig' %}
 
-{% block title %}ImageStack{% endblock %}
+{% block title %}Analysis{% endblock %}
 
 {% block body %}
-    <h1>ImageStack</h1>
+    <h1>Analysis</h1>
 
     <table class="table">
         <tbody>
@@ -31,10 +31,14 @@
                 <th>Analysed</th>
                 <td>{{ image_stack.analysed ? 'Yes' : 'No' }}</td>
             </tr>
+            <tr>
+                <th>User</th>
+                <td>{{ image_stack.user }}</td>
+            </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('image_stack_index') }}">back to list</a>
+    <a class="btn btn-dark" href="{{ path('image_stack_index') }}">← Back to list</a>
 
     <a href="{{ path('image_stack_edit', {'id': image_stack.id}) }}">edit</a>
 

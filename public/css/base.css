@@ -2,6 +2,10 @@ nav {
     margin-bottom: 1em;
 }
 
+#logged_as {
+    width: 100%;
+    text-align: right;
+}
 form {
     max-width: 50%;
 }
@@ -103,4 +107,23 @@ form[name=image_stack] button:hover {
     height: 128px;
     width: 128px;
     transform: translate(192px, 192px);
+}
+
+#upload-controls {
+    margin: 2em 0 1em 0;
+    height: 3em;
+    display: flex;
+}
+#upload-controls img#loading_icon {
+    height: 2.6em;
+    width: 2.6em;
+    display: none;
+}
+#upload-controls button {
+    margin-right: 2em;
+}
+#upload-controls p {
+    margin-left: 1em;
+    line-height: 3em;
+    font-weight: bold;
 }

@@ -16,10 +16,10 @@ class ImageStackType extends AbstractType
         $builder
             ->add('name',TextType::class, [
                 'required'=>true,
-                'label'=>'Analysis name'
+                'label'=>'Name'
                 ])
             ->add('uploadedFiles',FileType::class, [
-                'label'=>'Images to analyse',
+                'label'=>'Images to analyze',
                 'required' => true,
                 'multiple' => true
             ])

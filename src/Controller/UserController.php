@@ -11,18 +11,33 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+use Psr\Log\LoggerInterface;
+
 /**
  * @Route("/admin/user")
  */
 class UserController extends AbstractController
 {
+    private $username;
+    private function setUserName() {
+        $user = $this->getUser();
+        if (!$user) {
+            $this->username = "anonymous";
+        } else {
+            $this->username = $user->getEmail();
+        }
+
+    }
     /**
      * @Route("/", name="user_index", methods={"GET"})
      */
-    public function index(UserRepository $userRepository): Response
+    public function index(UserRepository $userRepository, LoggerInterface $logger): Response
     {
+
+        $this->setUserName();
         return $this->render('user/index.html.twig', [
             'users' => $userRepository->findAll(),
+            'username'=>$this->username
         ]);
     }
 
@@ -31,6 +46,7 @@ class UserController extends AbstractController
      */
     public function new(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
+        $this->setUserName();
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
@@ -47,6 +63,7 @@ class UserController extends AbstractController
         return $this->render('user/new.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
+            'username'=>$this->username
         ]);
     }
 
@@ -55,8 +72,10 @@ class UserController extends AbstractController
      */
     public function show(User $user): Response
     {
+        $this->setUserName();
         return $this->render('user/show.html.twig', [
             'user' => $user,
+            'username'=>$this->username
         ]);
     }
 
@@ -65,6 +84,7 @@ class UserController extends AbstractController
      */
     public function edit(Request $request, User $user,UserPasswordEncoderInterface $passwordEncoder): Response
     {
+        $this->setUserName();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
@@ -77,6 +97,7 @@ class UserController extends AbstractController
         return $this->render('user/edit.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
+            'username'=>$this->username
         ]);
     }
 

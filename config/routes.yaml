@@ -1,26 +1,18 @@
-index:
-  path: /welcome
-  controller: App\Controller\MainController::welcome
+homepage:
+  path: /
+  controller: App\Controller\HomeController::homepage
 
-upload:
-  path: /upload
-  controller: App\Controller\FormController::new
+analyse:
+  path: /analyze
+  controller: App\Controller\MainController::image_stack
 
-stack:
-  path: /new
-  controller: App\Controller\FormController::image_stack
-
-show:
-  path: /show/{token}
-  controller: App\Controller\MainController::show
-  
 visualize:
-  path: /visualize/{token}
+  path: /analyze/visualize/{token}
   controller: App\Controller\MainController::visualize
 
-homepage:
-    path: /
-    controller: App\Controller\HomeController::homepage
+uploaded:
+  path: /analyze/uploaded/{token}
+  controller: App\Controller\MainController::uploaded
 
 login:
     path: /login
@@ -31,6 +23,9 @@ logout:
     controller: App\Controller\SecurityController::logout
     methods: GET
 
+profil:
+  path: /profil
+  controller: App\Controller\SecurityController::profil
 add_user:
     path: /admin/add_user
     controller: App\Controller\SecurityController::add_user
@@ -38,6 +33,10 @@ profil:
   path: /profil
   controller: App\Controller\SecurityController::profil
 
+update_password_profil:
+  path: /update
+  controller: App\Controller\SecurityController::update_password_profil
+  methods: [POST]
 delete_user:
     path: /admin/delete_user
     controller: App\Controller\SecurityController::delete_user
@@ -46,7 +45,7 @@ ajax_check_state:
     path: /ajax-check-state
     controller: App\Controller\MainController::ajax_check_state
     methods: [POST]
-
-delete_image_stack: 
-    path: /delete-image-stack/{token}
-    controller: App\Controller\MainController:deleteStack
+ajax_start_processing:
+    path: /ajax-start-processing
+    controller: App\Controller\MainController::ajax_start_processing
+    methods: [POST]
