@@ -1,16 +1,21 @@
 {% extends 'home/username.html.twig'%}
 
 {% block page_contents %}
+    <!--
     <div id="logged_as">
     {# TODO: TRANSLATION #}
         {{ is_granted('IS_AUTHENTICATED_FULLY') == false ? 'You\'re not signed in' : 'You\'re signed in as '~username}}
     </div>
-    <div id="main" class="flex-full-center flex-vert">
-        <h1>Welcome to {{block('title')}}</h1>
-        {% if username=='anonymous' %}
-        <a href="{{ path('login') }}">Login</a>
-        {% else %}
-        <a href="{{ path('analyse') }}">Analyse some images</a>
+    -->
+    <div class="jumbotron">
+        <h1 class="display-4">{{ block('title') }}</h1>
+        <p class="lead">Accedebant enim eius asperitati, ubi inminuta vel laesa amplitudo imperii dicebatur, et iracundae suspicionum quantitati proximorum cruentae blanditiae exaggerantium incidentia et dolere inpendio simulantium, si principis periclitetur vita, a cuius salute velut filo pendere statum orbis terrarum fictis vocibus exclamabant.</p>
+        <hr class="my-4">
+        <p>Quis enim aut eum diligat quem metuat, aut eum a quo se metui putet? Coluntur tamen simulatione dumtaxat ad tempus. Quod si forte, ut fit plerumque, ceciderunt, tum intellegitur quam fuerint inopes amicorum. Quod Tarquinium dixisse ferunt, tum exsulantem se intellexisse quos fidos amicos habuisset, quos infidos, cum iam neutris gratiam referre posset.</p>
+        <p>Martinus agens illas provincias pro praefectis aerumnas innocentium graviter gemens saepeque obsecrans, ut ab omni culpa inmunibus parceretur, cum non inpetraret, minabatur se discessurum: ut saltem id metuens perquisitor malivolus tandem desineret quieti coalitos homines in aperta pericula proiectare.</p>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <br><br><a href="{{ path('analyse') }}">Analyse some images</a>
         {% endif %}
     </div>
 {% endblock %}

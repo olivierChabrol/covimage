@@ -2,7 +2,7 @@
 {% block title %}{{analysed ? 'Results visualization' : 'Uploaded visualization'}}{% endblock %}
 {% block body%}
     <div id="main" class="flex-full-center flex-vert">
-        <h1>Visualizer ({{Stack.getImages.toArray|length}} images) : </h1>
+        <h1>Visualizer ({{Stack.getImages.toArray|length}} images) : </h1> image display : <span id="imgPos"></span>
         <div id="visualizer-box" token="{{Stack.getName}}-{{Stack.getToken}}">
             <div id="slider-position">
                 <p><span id="actual-pos">{{Stack.getImages.toArray|length}}</span>/<span id="total">{{Stack.getImages.toArray|length}}</span></p>
@@ -16,6 +16,7 @@
                     {% set image = liste[liste|length-i] %}
                     {% set imageUrl = vich_uploader_asset(image)%}
                     <img class="visualized-image" imagecount="{{image.getName|split('_')[1]|split('.')[0]}}" src="{{ analysed ? imageUrl|replace({'uploads': 'results', 'dcm': 'png'}) : imageUrl }}"/>
+                    <img id="layer{{image.getName|split('_')[1]|split('.')[0]}}" class="visualized-image" imagecount="{{image.getName|split('_')[1]|split('.')[0]}}" src="{{ analysed ? imageUrl|replace({'uploads': 'results', '.dcm': '_layer.png'}) : imageUrl }}"/>
                 {% endfor %}
                 <img id="loading_icon" src="{{asset('images/loading.gif')}}"/>
             </div>
@@ -24,6 +25,14 @@
                 Processing finished</span>
                 {% else %}
                 Processing in progress...</span><br/><button class="btn btn-info" token="{{Stack.getToken}}" id="check_analyser">Check state</button>
+                {% endif %}
+                <br>
+                <span id="fileTitle">Fichier :</span>
+                <span id="analyse_info">{{ txt }}</span>
+                <br>
+                <a class="btn btn-primary" href="/analyze/download/{{ token }}" role="button">Download</a>
+                {% if Stack.getAnalysed %}
+                <a class="btn btn-secondary" href="#" role="button" id="hideShowLayerButton">Hide/Show layer (<u>w</u>)</a>
                 {% endif %}
             </p>
         </div>

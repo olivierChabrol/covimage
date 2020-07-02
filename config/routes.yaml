@@ -10,6 +10,10 @@ visualize:
   path: /analyze/visualize/{token}
   controller: App\Controller\MainController::visualize
 
+download:
+  path: /analyze/download/{token}
+  controller: App\Controller\MainController::download
+
 uploaded:
   path: /analyze/uploaded/{token}
   controller: App\Controller\MainController::uploaded
@@ -24,14 +28,12 @@ logout:
     methods: GET
 
 profil:
-  path: /profil
-  controller: App\Controller\SecurityController::profil
+    path: /profil
+    controller: App\Controller\SecurityController::profil
+    
 add_user:
     path: /admin/add_user
     controller: App\Controller\SecurityController::add_user
-profil:
-  path: /profil
-  controller: App\Controller\SecurityController::profil
 
 update_password_profil:
   path: /update

@@ -25,6 +25,7 @@ class ParamsType extends AbstractType
                 'choices' => $tabParam
             ])
             ->add('value')
+            ->add('label')
             ->add('color')
         ;
     }

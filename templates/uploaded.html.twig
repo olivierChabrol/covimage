@@ -4,6 +4,11 @@
     <div id="main" class="flex-full-center flex-vert">
         <h1>Successfully uploaded {{Stack.getImages.toArray|length}} images : </h1>
         <div id="upload-controls">
+            <select id="command" name="command">
+            {% for param in commands %}
+                <option value="{{ param.id }}">{{ param.label }}</option>
+            {% endfor %}
+            </select>
             <button class="btn btn-primary" id="start-processing" {{Stack.getAnalysed==true ? 'hidden': ''}} token="{{Stack.getToken}}">Start processing</button>
             <img id="loading_icon" {{Stack.getAnalysed==true ? 'hidden' : '' }} src="{{asset('images/loading.gif')}}"/>
             <p id="processing-state">{{Stack.getAnalysed==true ? "Processing is done" : ""}}</p>

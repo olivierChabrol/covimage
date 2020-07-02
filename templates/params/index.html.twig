@@ -11,6 +11,7 @@
                 <th>Id</th>
                 <th>Type_param</th>
                 <th>Value</th>
+                <th>Label</th>
                 <th>Color</th>
                 <th>actions</th>
             </tr>
@@ -21,6 +22,7 @@
                 <td>{{ param.id }}</td>
                 <td>{{ param.typeParam }}</td>
                 <td>{{ param.value }}</td>
+                <td>{{ param.label }}</td>
                 <td>{{ param.color }}</td>
                 <td>
                     <a href="{{ path('params_show', {'id': param.id}) }}">show</a>

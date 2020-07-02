@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding: utf-8
 
 # ## Aperçu des scans
@@ -74,6 +74,9 @@ def Dicom_to_png(root, path_save):
 #ROOT = '..\\DATA\\COVID19\\'
 path_save = 'images/results/'
 PATIENTS = glob('images/uploads/*')
+
+print(sys.argv[1])
+print(sys.argv[2])
 
 if len(sys.argv)>1:
     print('Argument passed, processing given folder : images/uploads/'+sys.argv[1]+'/ and storing results in : '+path_save)
