@@ -43,8 +43,18 @@ class AppFixtures extends Fixture
         //Default Script Params
         $ScriptPath = new Params();
         $ScriptPath->setTypeParam(2);
-        $ScriptPath->setValue('dicom.py');
+        $ScriptPath->setValue('./analyse.sh');
         $ScriptPath->setColor('#00FF00');
+        $ScriptPath->setLabel('COVID');
+        
+        $manager->persist($ScriptPath);
+        $manager->flush();
+
+        $ScriptPath = new Params();
+        $ScriptPath->setTypeParam(2);
+        $ScriptPath->setValue('./analyseHearth.sh');
+        $ScriptPath->setColor('#00FF00');
+        $ScriptPath->setLabel('HEART');
         
         $manager->persist($ScriptPath);
         $manager->flush();
